@@ -106,16 +106,17 @@
   }
 
   /* ---------- Remote image fallback ----------
-     Every remote <img> sits inside a container that already paints a
-     brand-gradient background (.cat-media / .split-media). If a remote
-     image fails to load, hide the broken <img> so the gradient shows
-     through and the layout still looks intentional. */
+     Every remote <img> sits inside a container that paints a plain,
+     neutral background (.feature-media / .split-media / .hero-bg /
+     .page-hero-bg). If a remote image fails to load, hide the broken
+     <img> so the neutral host shows through and the layout still reads
+     intentionally. */
   function initImageFallback() {
     document.querySelectorAll('img[src^="http"]').forEach(function (img) {
       function fail() {
         img.style.opacity = "0";
         img.style.visibility = "hidden";
-        var host = img.closest(".cat-media, .split-media");
+        var host = img.closest(".feature-media, .split-media");
         if (host) host.classList.add("img-failed");
       }
       if (img.complete && img.naturalWidth === 0) fail();
